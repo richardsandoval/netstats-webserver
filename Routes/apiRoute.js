@@ -9,8 +9,8 @@ var config = require('../config');
 var routes = function () {
 
     var api = express.Router();
-    
-    api.route('')
+
+    api.route('/')
         .use(function (req, res, next) {
             //console.log(req.body);
             next();

@@ -7,7 +7,7 @@ var express = require('express');
 var routes = function (Sniffer) {
     var snifferRouter = express.Router();
 
-    snifferRouter.route('')
+    snifferRouter.route('/')
         .get(function (req, res) {
             var query = req.query;
 

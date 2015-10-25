@@ -10,7 +10,7 @@ var routes = function (Accounts) {
 
     var accountRouter = express.Router();
 
-    accountRouter.route('')
+    accountRouter.route('/')
         .get(function (req, res) {
             var query = req.query;
             Accounts.find(query, function (err, user) {

@@ -7,7 +7,7 @@ var express = require('express');
 var routes = function (Data) {
     var dataRouter = express.Router();
 
-    dataRouter.route('')
+    dataRouter.route('/')
         .get(function (req, res) {
             var query = req.query;
 
