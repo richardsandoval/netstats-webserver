@@ -13,7 +13,7 @@ var routes = function () {
     api.route('/')
         .use(function (req, res, next) {
             //console.log(req.body);
-            next();
+            //next();
 
             var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
