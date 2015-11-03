@@ -57,19 +57,33 @@ var routes = function (Sniffer) {
             });
         });
 
-    //snifferRouter.route('/filter/isTCP')
-    //    .get(function (req, res) {
-    //        var response ;
-    //        var count = 2;//Sniffer.find({isTCP: false}).count();
-    //        var total = 5;//Sniffer.find({}).count();
-    //        response = {
-    //            upd : count,
-    //            tcp : (total - count),
-    //            total : total
-    //        };
-    //        res.json(response);
-    //
-    //    });
+    snifferRouter.route('/filter/isTCP')
+        .get(function (req, res) {
+
+            var counter = 0;
+            var total = 0;
+            Sniffer.count({isTCP: true}, function (err, count) {
+
+                if (err)
+                    res.status(500).send(err);
+
+                else {
+                    counter = count;
+                    Sniffer.count({}, function (err, count) {
+                        if (err)
+                            res.status(500).send(err);
+                        else {
+                            total = count;
+                            res.json({
+                                tcp: counter,
+                                udp: (total - counter),
+                                total: total
+                            });
+                        }
+                    });
+                }
+            });
+        });
     return snifferRouter;
 };
 

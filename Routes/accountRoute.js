@@ -21,7 +21,7 @@ var routes = function (Accounts) {
             });
         });
 
-    accountRouter.route('/authenticate')
+    accountRouter.route('/login')
         .post(function (req, res) {
 
             var body = req.body;

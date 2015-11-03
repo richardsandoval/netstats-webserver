@@ -2,20 +2,18 @@
  * Created by rsandoval on 24/10/15.
  */
 
-var express = require('express')
+
 var jwt = require('jsonwebtoken');
 var config = require('../config');
 
-var routes = function () {
-
+var routes = function (express) {
     var api = express.Router();
 
-    api.route('/')
-        .use(function (req, res, next) {
+    api.use(function (req, res, next) {
             //console.log(req.body);
             //next();
 
-            var token = req.body.token || req.query.token || req.headers['x-access-token'];
+            var token = req.body.token || req.query.token || req.headers['x-access-token'] || req.headers['bearer'];
 
             // decode token
             if (token) {

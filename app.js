@@ -23,7 +23,7 @@ var Account = require('./models/loginModel');
 var snifferRoute = require('./Routes/snifferRoute')(Sniffer);
 var dataRoute = require('./Routes/dataRoute')(Data);
 var accountRoute = require('./Routes/accountRoute')(Account);
-var apiRoute = require('./Routes/apiRoute');
+var apiRoute = require('./Routes/apiRoute')(express);
 
 app.use('/api/accounts', accountRoute);
 app.use('/api', apiRoute);
