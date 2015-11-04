@@ -10,7 +10,7 @@ var account = mongoose.model('account', new Schema({
     _id: ObjectId,
     user: String,
     pwr: String,
-    readOnly: Boolean
+    staffId: ObjectId
 }));
 
 module.exports = account;

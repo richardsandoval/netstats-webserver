@@ -10,7 +10,7 @@ var data = mongoose.model('data', new Schema({
     _id: ObjectId,
     start: Date,
     ends: Date,
-    networkData: [ObjectId]
+    accountId: ObjectId
 }));
 
 module.exports = data;

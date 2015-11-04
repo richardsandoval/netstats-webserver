@@ -14,7 +14,6 @@
         <array />
       </option>
       <option name="outputFromStdout" value="false" />
-      <option name="passParentEnvs" value="true" />
       <option name="program" value="$USER_HOME$/.nvm/versions/node/v4.0.0/bin/jade" />
       <option name="scopeName" value="Project Files" />
       <option name="trackOnlyRoot" value="true" />
@@ -34,7 +33,6 @@
         <array />
       </option>
       <option name="outputFromStdout" value="false" />
-      <option name="passParentEnvs" value="true" />
       <option name="program" value="$USER_HOME$/.nvm/versions/node/v4.0.0/bin/babel" />
       <option name="scopeName" value="Project Files" />
       <option name="trackOnlyRoot" value="true" />
@@ -54,7 +52,6 @@
         <array />
       </option>
       <option name="outputFromStdout" value="false" />
-      <option name="passParentEnvs" value="true" />
       <option name="program" value="$USER_HOME$/.nvm/versions/node/v4.0.0/bin/traceur" />
       <option name="scopeName" value="Project Files" />
       <option name="trackOnlyRoot" value="true" />
