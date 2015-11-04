@@ -31,7 +31,7 @@ app.use('/api/sniffer', snifferRoute);
 app.use('/api/data', dataRoute);
 
 app.get('/', function (req, res) {
-    res.send('welcome to NetStats Api');
+    res.send('<h1>Welcome to NetStats Api</h1>');
 });
 
 app.listen(port, function () {

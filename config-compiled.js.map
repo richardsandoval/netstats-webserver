@@ -1,1 +1,0 @@
-{"version":3,"sources":["config.js"],"names":[],"mappings":";;;;;;AAIA,MAAM,CAAC,OAAO,GAAG;AACb,UAAQ,EAAE,iBAAiB;AAC3B,YAAU,EAAE,+BAA+B;CAC9C,CAAA","file":"config-compiled.js","sourcesContent":["/**\n * Created by rsandoval on 24/10/15.\n */\n\nmodule.exports = {\n    'secret': 'netstatsproyect',\n    'database': 'mongodb://10.0.0.5:27017/test'\n}"]}
