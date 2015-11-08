@@ -35,6 +35,27 @@ AnalysisRoute.prototype.route = function () {
                 });
             });
 
+        });
+
+    analysisRoute.route('/bw')
+        .get(function (req, res) {
+
+            var user = {"user": req.headers['uname']};
+            var qs = req.query;
+
+            self.findAccountIds(user, function(ids){
+
+                self.Sniffer.find({
+                    dataId: {$in: ids},
+                    'timestamp.date': {$lte: new Date(qs.ends), $gte: new Date(qs.start)}
+                }, function (err, data) {
+                    if (err)
+                        res.status(500).send(err);
+                    else {
+                        res.json(new DataAnalyser(data, qs.criteria).analysisByDate());
+                    }
+                });
+            });
 
         });
 

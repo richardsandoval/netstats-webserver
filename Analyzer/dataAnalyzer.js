@@ -29,36 +29,62 @@ DataAnalyzer.prototype.analysisByCriteria = function () {
             n = 0;
         }
     });
-    return result.sort(function(a,b){
+    return result.sort(function (a, b) {
         return b.count - a.count;
     });
 
 };
 
-
-DataAnalyzer.prototype.analysis = function () {
-
+DataAnalyzer.prototype.analysisByDate = function () {
     var self = this;
-    var count = [];
-    var n = 0;
-    self.bundleData.forEach(function (data) {
-        if (data.sIP) {
-            count.forEach(function (unit) {
-                if (unit.ipAdd === data.sIP) {
-                    unit.count += 1;
-                    n++;
-                }
-            });
+    var result = {};
+    result.bw = [];
+    self.bundleData.sort(function (d1, d2) {
 
-            if (n < 1 || count.length < 1) {
-                count.push({
-                    ipAdd: data.sIP,
-                    count: 1
-                });
+        return (new Date(d1.timestamp.date) - new Date(d2.timestamp.date))
+
+    }).forEach(function (data) {
+
+        var actual;
+        var last;
+
+        if (result.bw.length > 0) {
+            switch (self.criteria) {
+                case 'minute':
+                    last = result.bw[result.bw.length - 1].time.getMinutes();
+                    actual = data.timestamp.date.getMinutes();
+                    break;
+                case 'hour':
+                    last = result.bw[result.bw.length - 1].time.getHours();
+                    actual = data.timestamp.date.getHours();
+                    break;
+                case 'days':
+                    last = result.bw[result.bw.length - 1].time.getDay();
+                    actual = data.timestamp.date.getDay();
+                    break;
+                default:
+                    last = result.bw[result.bw.length - 1].time.getSeconds();
+                    actual = data.timestamp.date.getSeconds();
             }
-            n = 0;
         }
+
+        if (result.bw.length > 0 && actual === last) {
+            result.bw[result.bw.length - 1].dataUse += data.length === 0 ? 64 : data.length;
+        } else {
+            result.bw.push({
+                time: new Date(data.timestamp.date),
+                dataUse: data.length === 0 ? 64 : data.length
+            });
+        }
+
+    });
+    var average = 0;
+    result.bw.forEach(function(element){
+        average+= element.dataUse;
     });
 
-    return count;
+    result.average = average/result.bw.length;
+    result.criteria = self.criteria;
+
+    return result;
 };
