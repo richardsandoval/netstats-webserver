@@ -29,7 +29,9 @@ DataAnalyzer.prototype.analysisByCriteria = function () {
             n = 0;
         }
     });
-    return result;
+    return result.sort(function(a,b){
+        return b.count - a.count;
+    });
 
 };
 
