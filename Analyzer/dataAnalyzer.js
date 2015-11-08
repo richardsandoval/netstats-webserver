@@ -7,7 +7,6 @@ var DataAnalyzer = module.exports = function (bundleData, criteria) {
     this.criteria = criteria;
 };
 
-
 DataAnalyzer.prototype.analysisByCriteria = function () {
     var self = this;
     var result = [];
