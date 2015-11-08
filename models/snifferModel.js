@@ -10,7 +10,9 @@ var sniffer = mongoose.model('sniffer', new Schema({
 
     _id: ObjectId,
     dataId: ObjectId,
-    date: Date,
+    timestamp: {
+        date: Date
+    },
     isTCP: Boolean,
     sMAC: String,
     dMAC: String,

@@ -4,5 +4,5 @@
 
 module.exports = {
     'secret': 'netstatsProject',
-    'database': 'mongodb://localhost:27017/netstats'
+    'database': 'mongodb://netstatspucmm.com:27017/netstats'
 };

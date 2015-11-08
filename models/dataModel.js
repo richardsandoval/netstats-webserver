@@ -8,8 +8,12 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 
 var data = mongoose.model('data', new Schema({
     _id: ObjectId,
-    start: Date,
-    ends: Date,
+    start: {
+        "date": Date
+    },
+    ends: {
+        "date": Date
+    },
     accountId: ObjectId
 }));
 

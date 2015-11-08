@@ -24,11 +24,15 @@ var snifferRoute = require('./Routes/snifferRoute')(Sniffer);
 var dataRoute = require('./Routes/dataRoute')(Data);
 var accountRoute = require('./Routes/accountRoute')(Account);
 var apiRoute = require('./Routes/apiRoute')(express);
+var analysisRoute = require('./Routes/analysisRoute')(Sniffer, Account, Data);
+
+
 
 app.use('/api/accounts', accountRoute);
 app.use('/api', apiRoute);
 app.use('/api/sniffer', snifferRoute);
 app.use('/api/data', dataRoute);
+app.use('/api/analysis', analysisRoute);
 
 app.get('/', function (req, res) {
     res.send('<h1>Welcome to NetStats Api</h1>');
