@@ -26,7 +26,7 @@ netstats.controller('LoginController', function ($scope, $location, $http, $wind
         };
         console.log(" klk");
         $http({
-            url: 'http://localhost:8081/api/account/login',
+            url: 'http://localhost:8000/api/account/login',
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -36,14 +36,16 @@ netstats.controller('LoginController', function ($scope, $location, $http, $wind
 
         }).success(function (data) {
 
-            id(data.token)
-            {
+            //if(data.token)
+            //{
                 $window.session = data;
                 console.log($window.session);
                 $location.path('/index');
-            }
+            //}
 
         }).error(function (data) {
+            console.log(data);
+            console.log('hola');
             delete $window.session;
         });
 
