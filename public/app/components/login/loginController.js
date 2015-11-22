@@ -18,15 +18,13 @@ netstats.controller('LoginController', function ($scope, $location, $http, $wind
         }
     }
 
-
     $scope.loginCtrl = function () {
         var request = {
             user: $scope.user,
             pwr: $scope.pwr
         };
-        console.log(" klk");
         $http({
-            url: 'http://localhost:8889/api/account/login',
+            url: 'http://netstatspucmm.com/api/account/login',
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -36,12 +34,12 @@ netstats.controller('LoginController', function ($scope, $location, $http, $wind
 
         }).success(function (data) {
 
-            //if(data.token)
-            //{
+            console.log(data.token);
+            if(data.token)
+            {
                 $window.session = data;
-                console.log($window.session);
                 $location.path('/index');
-            //}
+            }
 
         }).error(function (data) {
             console.log(data);
