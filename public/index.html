@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="netstatsApp">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <title>NETSTATS - PUCMM</title>
+
+    <!-- CSS  -->
+    <!-- Styles -->
+    <link href="assets/css/materialize.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="assets/css/m-admin.css" rel="stylesheet">
+
+    <!-- JS -->
+    <script src="assets/js/jquery-2.1.4.min.js"></script>
+    <script src="assets/js/materialize.min.js"></script>
+    <script src="assets/js/m-admin.js"></script>
+    <script src="assets/flot/jquery.textfill.min.js"></script>
+    <!--<script src="assets/libs/jquery/dist/jquery.min.js"></script>-->
+    <!--<script src="assets/libs/Materialize/dist/js/materialize.min.js"></script>-->
+    <script src="assets/libs/angular/angular.min.js"></script>
+    <script src="assets/libs/angular-resource/angular-resource.js"></script>
+    <script src="assets/libs/angular-route/angular-route.js"></script>
+    <script src="app/app.routes.js"></script>
+    <script src="app/components/login/loginController.js"></script>
+    <!--<script src="assets/js/controllers/IndexController.js"></script>-->
+    <!--<script src="js/init.js"></script>-->
+
+    <!--<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>-->
+</head>
+<body>
+<header>
+
+    <nav>
+        <div class="nav-wrapper grey lighten-4">
+            <a href="#" class="brand-logo black-text">
+                Material Admin
+                <img class="sigu-brand" width="120" src="assets/images/logo.png" alt=""/>
+            </a>
+
+            <a href="#" data-activates="mobile-demo" class="button-collapse">
+                <i class="material-icons">menu</i></a>
+
+            <ul class="right nav-profile">
+
+                <li>
+                    <a id="dropMessages" class="dropdown-button black-text tiny" href="#" data-activates="dropdown2">
+                        <i class="material-icons tiny">local_post_office</i>
+                    </a>
+                </li>
+
+                <li>
+                    <a id="dropAlerts" class="dropdown-button black-text" href="#" data-activates="dropdown3">
+                        <i class="material-icons">notifications</i>
+                    </a>
+                </li>
+
+                <li>
+                    <a id="dropTask" class="dropdown-button black-text" href="#" data-activates="dropdown4">
+                        <i class="material-icons">check_box</i>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="dropdown-button" href="#!" data-activates="dropdown1" id="dropProfile">
+                        <span class="grey-text text-darken-2">Welcome, Administrator</span>
+                        <img src="assets/images/avatar.png" class="responsive-img circle right profile-img" width="40"
+                             alt=""/>
+                    </a>
+                </li>
+            </ul>
+
+            <ul id="dropdown1" class="dropdown-content">
+                <li><a href="#">
+                    <i class="material-icons left">person</i>
+                    View Profile
+                </a></li>
+                <li><a href="#">
+                    <i class="material-icons left">settings</i>
+                    Settings
+                </a></li>
+                <li class="divider"></li>
+                <li><a href="#">
+                    Logout
+                    <i class="material-icons left">input</i>
+                </a></li>
+            </ul>
+
+            <ul class="dropdown-content card-panel card-info blue-grey darken-2" id="dropdown2">
+                <li>
+                    <a href="#">
+                        <div>
+                            <strong>Jhon Smith</strong>
+                            <small class="right">Yesterday</small>
+                        </div>
+                        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#">
+                        <div>
+                            <strong>Jhon Smith</strong>
+                            <small class="right">Yesterday</small>
+                        </div>
+                        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#" class="center">
+                        <div>
+                            <strong>Ready All Messages ></strong>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="dropdown-content card-panel card-info blue-grey darken-2" id="dropdown3">
+                <li>
+                    <a href="#">
+                        <small class="right"> 12 minutes ago</small>
+                        <i class="material-icons tiny left">comment</i>
+                        <strong>New Comment</strong>
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#">
+                        <small class="right"> 4 hour ago</small>
+                        <i class="material-icons left">send</i>
+                        <strong>Message sent</strong>
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#">
+                        <small class="right"> Today</small>
+                        <i class="material-icons left">cake</i>
+                        <strong>Birthdays</strong>
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#">
+                        <small class="right"> 1 day</small>
+                        <i class="material-icons left">event_available</i>
+                        <strong>New Event</strong>
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#" class="center">
+                        <div>
+                            <strong>See All Alerts ></strong>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="dropdown-content card-panel card-info blue-grey darken-2" id="dropdown4">
+                <li>
+                    <a href="#">
+                        <small class="right"> 30% Complete</small>
+                        <strong>Task 1</strong>
+
+                        <div class="progress">
+                            <div class="determinate blue" style="width: 30%"></div>
+                        </div>
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#">
+                        <small class="right"> 80% Complete</small>
+                        <strong>Task 2</strong>
+
+                        <div class="progress">
+                            <div class="determinate amber darken-4" style="width: 80%"></div>
+                        </div>
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#">
+                        <small class="right"><i class="material-icons">check</i></small>
+                        <strong>Task 3</strong>
+
+                        <div class="progress">
+                            <div class="determinate green" style="width: 100%"></div>
+                        </div>
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#">
+                        <small class="right">10% complete</small>
+                        <strong>Task 4</strong>
+
+                        <div class="progress">
+                            <div class="determinate  red darken-4" style="width: 10%"></div>
+                        </div>
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#" class="center">
+                        <div>
+                            <strong>See All Tasks ></strong>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navbar sidebar " role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li id="dashboard">
+                        <a class="waves-effect waves-light"
+                           href="index.html">
+                            <i class="material-icons left">dashboard</i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+
+
+
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+
+
+    </nav>
+</header>
+
+
+<!--  Scripts-->
+
+<main>
+    <p>s</p>
+    <p>s</p>
+    <div class="container">
+        <ng-view></ng-view>
+    </div>
+
+</main>
+
+<footer class="cyan">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Footer Content</h5>
+                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2015 Copyright Text
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

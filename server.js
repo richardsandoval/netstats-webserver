@@ -58,8 +58,8 @@ new Routes(app).analysis('/api/analysis');
 //new Routes(app).route();
 
 
-app.get('/', function (req, res) {
-    res.sendfile('./public/views/index.html'); // load our public/index.html file
+app.get('*', function (req, res) {
+    res.sendfile('./public/index.html'); // load our public/index.html file
 });
 
 // start app ===============================================

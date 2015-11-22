@@ -39,6 +39,7 @@ Account.prototype.login = function () {
                             expiresIn: 3600
                         });
                         res.json({
+                            user : body.user,
                             success: true,
                             message: 'Authenticated',
                             token: token

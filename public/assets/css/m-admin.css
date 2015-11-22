@@ -1,0 +1,254 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer .footer-copyright {
+    overflow: hidden;
+    height: 50px;
+    line-height: 50px;
+    color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(51, 51, 51, 0.08);
+}
+
+nav a {
+    color: #555;
+}
+
+a.button-collapse {
+    margin-left: 15px;
+}
+
+.nav-wrapper .brand-logo {
+    margin-left: 20px;
+}
+
+.nav-wrapper a i {
+    font-size: 1.4em;
+
+}
+
+.nav-profile i{
+    line-height: 64px;
+    height: 64px
+}
+
+.nav-profile li ul.card-panel{
+    padding: 0px;
+    width: 310px;
+    min-width: 0px;
+}
+
+.nav-profile ul.card-panel a{
+    color:#fff;
+
+}
+
+main section.content {
+    margin-top: 100px;
+}
+
+main section.content .container {
+    width: 95%;
+}
+
+.profile-img {
+    margin-left: 15px;
+    margin-top: 12px;
+}
+
+.flot-chart {
+    height: 400px;
+    width: 100%;
+    font-size: 13px;
+    line-height: 1.2em;
+}
+
+.flot-chart-content {
+    height: 100%;
+    width: 100%;
+}
+
+.block-element{
+    display: block;
+}
+
+/*** Sidebar ***/
+.sidebar .truncate {
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    font-size: 16px;
+}
+
+.sidebar {
+    background-color: #00BCD1;
+    width: 100%;
+    z-index: 1;
+    position: absolute;
+    margin-top: 0px;
+    border-top: #cccccc;
+    border-top-width: 1px;
+    border-top-style: solid;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar ul li {
+    display: inline-block;
+    float: left;
+    height: 70px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #FFF;
+    height: 70px;
+    width: 100px;
+    display: inline-block;
+    text-align: center;
+    font-size: 16px;
+    padding-right: 2px;
+    padding-left: 2px;
+    overflow: hidden;
+    text-decoration: none !important;
+}
+
+.sidebar ul li a:hover, .sidebar ul li a:focus, .sidebar ul li a.active {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: white;
+}
+
+.side-nav li.active {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.sidebar ul li a.active:hover {
+    border: 0 !important;
+}
+
+.sidebar ul li a i {
+    display: inline-block;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: -20px;
+    font-size: 27px;
+    text-align: center;
+}
+
+.sidebar ul li {
+    border: none;
+}
+
+ul.side-nav li.logo {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+ul.side-nav li.logo a {
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.sub-menu {
+    width: 200px;
+    top: 70px;
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+    position: absolute;
+    border: 1px solid #00BCD1;
+    background-color: white;
+    padding: 0px 1px 0px 1px;
+    display: none;
+}
+
+ul.sub-menu li {
+    float: none;
+    display: block;
+
+    margin-bottom: 1px;
+    margin-top: 2px;
+
+    height: 30px;
+}
+
+ul.sub-menu li:hover,
+ul.sub-menu li:active {
+    background-color: #ffffff;
+}
+
+ul.sub-menu li a {
+    height: 30px;
+    width: 100%;
+    display: inline-block;
+    color: black;
+    text-indent: 15px;
+    line-height: 34px;
+    text-align: left;
+    margin-bottom: 7px;
+}
+
+ul.sub-menu li a:hover {
+    background-color: rgba(0, 0, 0, 0.09);
+    color: black;
+    border: 0px;
+}
+
+.sub-menu .item-sub-menu a span.menu-item-parent {
+    color: #2C3E50;
+    display: block;
+    text-align: left;
+}
+
+ul.sub-menu li div.item-sub-menu {
+    width: 100%;
+}
+
+.sidebar ul li:hover ul.sub-menu {
+    display: block;
+}
+
+.side-nav li a i {
+    margin-top: 15px;
+}
+
+/*SideBar - End*/
+
+
+.dropdown-content.card-info li > a:hover,
+.dropdown-content.card-info li > a:active,
+.dropdown-content.card-info li > span:hover,
+.dropdown-content.card-info li > span:active {
+    color: #26a69a;
+}
+
+.dropdown-content.card-info li > a small i {
+    height: 0px;
+    line-height: 0px;
+}
+
+.flot-chart .legend table{
+    width: auto;
+}
+
+@media only screen and (max-width: 990px) {
+    .nav-wrapper .brand-logo {
+        display: none;
+    }
+
+    main section.content {
+        margin-top: 0px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    #dropProfile span{
+        display: none;
+    }
+}
