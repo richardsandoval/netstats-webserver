@@ -15,7 +15,9 @@ netstats.config(function ($routeProvider) {
         .when('/index', {
             controller: 'DashboardController',
             templateUrl: 'app/components/dashboard/dashboardView.html'
-        });
+        }).otherwise({
+        redirectTo: '/'
+    });
 });
 
 
