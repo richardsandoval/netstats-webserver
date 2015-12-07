@@ -46,23 +46,20 @@
             <div class="col-lg-4"></div>
         </div>
         <div class="row">
+            <div class="col-lg-4"></div>
+
             <div class="col-lg-4">
                 <div class="panel panel-default">
-                    <div class="panel-heading font-bold">Top Sessions</div>
-                    <div class="panel-body text-center">
-                        <div ui-jq="sparkline"
-                             ui-options="[60,40], {type:'pie', height:154, sliceColors:['#23b7e5','#eaeeea']}"
-                             class="sparkline inline"></div>
-                        <div class="line pull-in"></div>
-                        <div class="text-xs">
-                            <i class="fa fa-circle text-info"></i> 60%
-                            <i class="fa fa-circle text-muted m-l"></i> 40%
-                        </div>
+                    <div class="panel-heading font-bold">Top Source</div>
+                    <div class="panel-body text-center" ng-init="topSrc()">
+                        <canvas id="topSource" class="chart chart-doughnut" chart-data="topSrcData"
+                                chart-labels="topSrcLabels" chart-legend="true"
+                                chart-click="onClick">
+                        </canvas>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-4"></div>
 
             <div class="col-md-4">
                 <div class="panel panel-default">
@@ -75,7 +72,7 @@
                             <time am-time-ago="time.ago"></time>
                         </h4>
                         <div class="inline">
-                            <span class="h2 m-l-sm step" >
+                            <span class="h2 m-l-sm step">
                                 <label>{{sizePacket}}</label>
                             </span>
                         </div>
