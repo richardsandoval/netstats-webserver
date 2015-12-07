@@ -1,3 +1,4 @@
 #node_modules
 .idea
 public/assets/libs
+node_modules
