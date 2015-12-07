@@ -25,6 +25,7 @@ app
         var result = [];
         $scope.d0_2 = [0, 4], [1, 4.5], [2, 7], [3, 4.5], [4, 3], [5, 3.5], [6, 6], [7, 3], [8, 4], [9, 3];
 
+
         //$scope.bw =
 
         //$scope.d0_2 = [0, 4], [1, 4.5], [2, 7], [3, 4.5], [4, 3], [5, 3.5], [6, 6], [7, 3], [8, 4], [9, 3];
@@ -53,24 +54,93 @@ app
             var k = 0;
             result = [];
             $http.get(app.api + '/analysis/bw?uname=' + $window.data.user + '&start=' + (new Date() - 20) + '&ends=' + (new Date() + 1 ) + '&criteria=' + which, {
-                    headers: {
-                        Bearer: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1NjM5MTU2ZGY3NjMwYzI4MjFhOWQ3Y2QiLCJ1c2VyIjoicnNhbmRvdmFsIiwicHdyIjoicnNhbmRvdmFsIiwic3RhZmZJZCI6IjU2M2ExN2E5Njk3OGIyMTE0ZWQzYzJkYiJ9.p6z5FZjvnnlbpXNy9OTTqqSJfwy7KDerR_HMdoPTAi4',
-                        uname: 'rsandoval'
-                    }
-                }).then(function (res) {
-                    res.data.bw.forEach(function (data) {
-                        var arr = new Array(2);
-                        arr[1] = data.dataUse;
-                        arr[0] = k++;
-                        result.push(arr);
-                    });
-                    console.log(result);
-                    $scope.bw = result;
-                }, function (err) {
-                    console.log(err);
-                    $scope.bw = $scope.d0_1;
+                headers: {
+                    Bearer: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1NjM5MTU2ZGY3NjMwYzI4MjFhOWQ3Y2QiLCJ1c2VyIjoicnNhbmRvdmFsIiwicHdyIjoicnNhbmRvdmFsIiwic3RhZmZJZCI6IjU2M2ExN2E5Njk3OGIyMTE0ZWQzYzJkYiJ9.p6z5FZjvnnlbpXNy9OTTqqSJfwy7KDerR_HMdoPTAi4',
+                    uname: 'rsandoval'
+                }
+            }).then(function (res) {
+                var labels = [];
+                var datas = [];
+                $scope.data = [[]];
+                res.data.bw.forEach(function (data) {
+                    var arr = new Array(2);
+                    arr[1] = data.dataUse;
+                    arr[0] = k++;
+                    var time = new Date(data.time);
+                    labels.push(time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds());
+                    datas.push(data.dataUse);
+                    result.push(arr);
+                });
+                //console.log(result);
+                $scope.data.push(sampling(datas));
+
+                $scope.labels = (sampling(labels));
+                //$scope.label = result[0];
+                //$scope.data = result[1];
+                //$scope.bw = result;
+            }, function (err) {
+                console.log(err);
+                $scope.bw = $scope.d0_1;
+            });
+
+        };
+
+        $scope.topFive = function () {
+            $http.get(app.api + '/analysis/rank?uname=' + $window.data.user + '&start=' + (new Date() - 20) + '&ends=' + (new Date() + 1 ) + '&criteria=protocol', {
+                headers: {
+                    Bearer: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1NjM5MTU2ZGY3NjMwYzI4MjFhOWQ3Y2QiLCJ1c2VyIjoicnNhbmRvdmFsIiwicHdyIjoicnNhbmRvdmFsIiwic3RhZmZJZCI6IjU2M2ExN2E5Njk3OGIyMTE0ZWQzYzJkYiJ9.p6z5FZjvnnlbpXNy9OTTqqSJfwy7KDerR_HMdoPTAi4',
+                    uname: 'rsandoval'
+                }
+            }).then(function (res) {
+                $scope.pieData = [];
+                $scope.pieLabel = [];
+                var p = [],d = [];
+                var pieD = res.data.filter(function(f){
+                    return f.criteria < 1024;
                 });
 
+                pieD.forEach(function(data){
+                    d.push(data.count);
+                    p.push(data.criteria);
+                    console.log(data.criteria);
+                });
+                $scope.pieData = d;
+                $scope.pieLabel = p;
+
+                console.log(pieD);
+            }, function (err) {
+                console.error(err);
+            });
+        };
+
+        $scope.topDest = function(){
+
+        };
+
+        var sampling = function (array) {
+            if (array <= 50)
+                return array;
+            else {
+                var n = array.length;
+                var steps = Math.ceil(n / 50);
+                var max = Math.floor(n / steps);
+                var arr = [];
+                for (var i = 0; i < max; i++) {
+                    arr.push(array[i * steps]);
+                }
+                return arr;
+            }
+        };
+
+        $scope.topDestData = [];
+        $scope.topDestLabels = [];
+        $scope.pieData = [];
+        $scope.pieLabel = [];
+        $scope.labels = [];
+        $scope.series = ['Bw/t'];
+        $scope.data = [[]];
+        $scope.onClick = function (points, evt) {
+            console.log(points, evt);
         };
 
         var refresh = function (res) {

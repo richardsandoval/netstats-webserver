@@ -2,6 +2,8 @@
   "name": "Netstats",
   "main": "server.js",
   "dependencies": {
+    "angular-moment": "^0.10.3",
+    "angularjs-datepicker": "^0.2.15",
     "body-parser": "^1.14.1",
     "cors": "^2.7.1",
     "express": "^4.13.3",
@@ -22,6 +24,7 @@
     "jsonwebtoken": "^5.4.1",
     "kerberos": "0.0.17",
     "method-override": "^2.0.2",
+    "moment": "^2.10.6",
     "mongodb-core": "^1.2.26",
     "mongoose": "^4.1.12",
     "morgan": "^1.6.1",

@@ -2,33 +2,102 @@
     app.settings.asideFolded = false;
     app.settings.asideDock = false;
   ">
-    <!-- main -->
-    <div class="col">
-        <div class="bg-black dker wrapper-lg" ng-controller="FlotChartDemoCtrl">
-            <ul class="nav nav-pills nav-xxs nav-rounded m-b-lg">
-                <li class="active" ng-init="refreshData('minute')" ng-click="refreshData()"><a href>Minutes</a></li>
-                <li><a href ng-click="refreshData('hour')">Hours</a></li>
-                <li><a href ng-click="refreshData('days')">Days</a></li>
-            </ul>
-            <div ui-jq="plot" ui-refresh="bw" ui-options="
-        [
-          {
-            data: {{bw}},
-            points: { show: true, radius: 2},
-            splines: { show: true, tension: 0.4, lineWidth: 1 }
-          }
-        ],
-        {
-          colors: ['{{app.color.info}}', '{{app.color.primary}}'],
-          series: { shadowSize: 3 },
-          xaxis:{ font: { color: '#507b9b' } },
-          yaxis:{ font: { color: '#507b9b' } },
-          grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#1c2b36' },
-          tooltip: true,
-          tooltipOpts: { content: 'Visits of %x.1 is %y.4',  defaultTheme: false, shifts: { x: 10, y: -25 } }
-        }
-      " style="min-height:360px">
+    <div ng-controller="FlotChartDemoCtrl">
+        <!-- main -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bg-black dker wrapper-lg" ng-controller="FlotChartDemoCtrl">
+                    <ul class="nav nav-pills nav-xxs nav-rounded m-b-lg">
+                        <li class="active" ng-init="refreshData('minute')" ng-click="refreshData()"><a href>Minutes</a>
+                        </li>
+                        <li><a href ng-click="refreshData('hour')">Hours</a></li>
+                        <li><a href ng-click="refreshData('days')">Days</a></li>
+                    </ul>
+                    <canvas id="line" class="chart chart-line" chart-data="data"
+                            chart-labels="labels" chart-legend="true"
+                            chart-click="onClick">
+                    </canvas>
+                </div>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading font-bold">Top 5 Protocols</div>
+                    <div class="panel-body" ng-init="topFive()">
+                        <canvas id="pie" class="chart chart-pie"
+                                chart-data="pieData" chart-labels="pieLabel">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading font-bold">Top Destinations</div>
+                    <div class="panel-body">
+                        <canvas id="topDest" class="chart chart-line" chart-data="topDestData"
+                                chart-labels="topDestLabels" chart-legend="true"
+                                chart-click="onClick">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading font-bold">Top Sessions</div>
+                    <div class="panel-body text-center">
+                        <div ui-jq="sparkline"
+                             ui-options="[60,40], {type:'pie', height:154, sliceColors:['#23b7e5','#eaeeea']}"
+                             class="sparkline inline"></div>
+                        <div class="line pull-in"></div>
+                        <div class="text-xs">
+                            <i class="fa fa-circle text-info"></i> 60%
+                            <i class="fa fa-circle text-muted m-l"></i> 40%
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4"></div>
+
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading font-bold">
+                        Animate
+                    </div>
+                    <div class="panel-body text-center">
+                        <h4>
+                            <small>last</small>
+                            12
+                            <small> hrs</small>
+                        </h4>
+                        <small class="text-muted block">yesterday: 20%</small>
+                        <div class="inline">
+                            <div ui-jq="easyPieChart" ui-options="{
+                      percent: 25,
+                      lineWidth: 10,
+                      trackColor: '#e8eff0',
+                      barColor: '#27c24c',
+                      scaleColor: '#e8eff0',
+                      size: 188,
+                      lineCap: 'butt',
+                      animate: 1000
+                    }">
+                                <div>
+                                    <span class="h2 m-l-sm step">25</span>%
+                                    <div class="text text-sm">today</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
     </div>
 </div>
