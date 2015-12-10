@@ -2,7 +2,7 @@
 
 /* Controllers */
 // signin controller
-app.controller('SigninFormController', ['$scope', '$http', '$state', $sessionStorage, function ($scope, $http, $state, $sessionStorage) {
+app.controller('SigninFormController', ['$scope', '$state', '$sessionStorage', 'signService', function ($scope, $state, $sessionStorage, signService) {
 
     if ($sessionStorage.data) {
         $state.go('app.dashboard-v1');
@@ -12,19 +12,38 @@ app.controller('SigninFormController', ['$scope', '$http', '$state', $sessionSto
 
     $scope.user = {};
     $scope.authError = null;
+
     $scope.login = function () {
-        $scope.authError = null;
-        // Try to login
-        $http.post(app.api + '/account/login', {user: $scope.user.email, pwr: $scope.user.password})
-            .then(function (response) {
-                if (!response.data.user) {
-                    $scope.authError = 'Email or Password not right';
-                } else {
-                    $sessionStorage.data = response.data;
-                    $state.go('app.dashboard-v1');
-                }
-            }, function () {
-                $scope.authError = 'Server Error';
-            });
+        var auth = {
+            user: $scope.user.email,
+            pwr: $scope.user.password
+        };
+        var data = signService.signIn(auth);
+
+        if (data) {
+
+            if (data.err) {
+                $scope.authError = data.err.message;
+            }
+            if (data.data) {
+                $sessionStorage.data = data.data;
+                $state.go('app.dashboard-v1');
+            }
+        }
     };
+    //$scope.login = function () {
+    //    $scope.authError = null;
+    //    // Try to login
+    //    $http.post(app.api + '/account/login', {user: $scope.user.email, pwr: $scope.user.password})
+    //        .then(function (response) {
+    //            if (!response.data.user) {
+    //                $scope.authError = 'Email or Password not right';
+    //            } else {
+    //                $sessionStorage.data = response.data;
+    //                $state.go('app.dashboard-v1');
+    //            }
+    //        }, function () {
+    //            $scope.authError = 'Server Error';
+    //        });
+    //};
 }]);
