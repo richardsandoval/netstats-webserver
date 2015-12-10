@@ -6,6 +6,8 @@ app.controller('SigninFormController', ['$scope', '$http', '$state', '$window', 
 
     if (window.data) {
         $state.go('app.dashboard-v1');
+    }else{
+        $state.go('access.signin');
     }
 
     $scope.user = {};
