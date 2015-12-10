@@ -18,32 +18,16 @@ app.controller('SigninFormController', ['$scope', '$state', '$sessionStorage', '
             user: $scope.user.email,
             pwr: $scope.user.password
         };
-        var data = signService.signIn(auth);
-
-        if (data) {
-
-            if (data.err) {
-                $scope.authError = data.err.message;
-            }
-            if (data.data) {
-                $sessionStorage.data = data.data;
+        signService.signIn(auth)
+            .then(function (data) {
+                console.log(data);
+                $sessionStorage.data = data;
                 $state.go('app.dashboard-v1');
-            }
-        }
+            })
+            .catch(function (err) {
+                console.log(err);
+                $scope.authError = err.message;
+            });
+
     };
-    //$scope.login = function () {
-    //    $scope.authError = null;
-    //    // Try to login
-    //    $http.post(app.api + '/account/login', {user: $scope.user.email, pwr: $scope.user.password})
-    //        .then(function (response) {
-    //            if (!response.data.user) {
-    //                $scope.authError = 'Email or Password not right';
-    //            } else {
-    //                $sessionStorage.data = response.data;
-    //                $state.go('app.dashboard-v1');
-    //            }
-    //        }, function () {
-    //            $scope.authError = 'Server Error';
-    //        });
-    //};
 }]);
