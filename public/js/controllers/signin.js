@@ -2,11 +2,11 @@
 
 /* Controllers */
 // signin controller
-app.controller('SigninFormController', ['$scope', '$http', '$state', $sessionStorage, function ($scope, $http, $state, $window) {
+app.controller('SigninFormController', ['$scope', '$http', '$state', $sessionStorage, function ($scope, $http, $state, $sessionStorage) {
 
     if ($sessionStorage.data) {
         $state.go('app.dashboard-v1');
-    }else{
+    } else {
         $state.go('access.signin');
     }
 
