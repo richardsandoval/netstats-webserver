@@ -5,9 +5,9 @@
 
 /* Controllers */
 // signin controller
-app.controller('SigninFormController', ['$scope', '$http', '$state', '$window', function ($scope, $http, $state, $window) {
+app.controller('SigninFormController', ['$scope', '$http', '$state', '$sessionStorage', function ($scope, $http, $state, $window) {
 
-    delete $window.data;
+    delete  $sessionStorage.data;
 
     $scope.user = {};
     $scope.authError = null;
@@ -19,7 +19,7 @@ app.controller('SigninFormController', ['$scope', '$http', '$state', '$window', 
                 if (!response.data.user) {
                     $scope.authError = 'Email or Password not right';
                 } else {
-                    $window.data = response.data;
+                    $sessionStorage.data = response.data;
                     $state.go('app.dashboard-v1');
                 }
             }, function () {
