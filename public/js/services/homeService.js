@@ -25,9 +25,6 @@ app.factory('homeService', function ($http, $q) {
                 for (var j = i * steps; j < steps * (i + 1); j++) {
                     callback.dataUse[i] += dArray[j].dataUse;
                 }
-                //if (callback[i].time) {
-                //    callback[i].time = moment(callback[i].time).format('YYYY/MM/DD, h:mm:ss a');
-                //}
             }
             q.resolve(callback);
         }
@@ -53,7 +50,6 @@ app.factory('homeService', function ($http, $q) {
         }).then(function (res) {
             sampling(res.data.bw)
                 .then(function (data) {
-                    console.log(data);
                     defered.resolve(data);
                 })
                 .catch(function (err) {

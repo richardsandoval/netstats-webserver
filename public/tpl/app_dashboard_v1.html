@@ -10,8 +10,10 @@
                     <div>
                         <div class="col-lg-8">
                             <ul class="nav nav-pills nav-xxs nav-rounded m-b-lg">
-                                <li ng-repeat="filter in byFilters" ng-click="refreshData(byFilters[$index], prevDate, nextDate)"
-                                    ng-init="refreshData(byFilters[0], prevDate, nextDate)" ng-class="{sel: $index == selected}">
+                                <li ng-repeat="filter in byFilters"
+                                    ng-click="refreshData(byFilters[$index], prevDate, nextDate)"
+                                    ng-init="refreshData(byFilters[0], prevDate, nextDate)"
+                                    ng-class="{sel: $index == selected}">
                                     <a href>{{filter}}</a>
                                 </li>
                             </ul>
@@ -20,32 +22,29 @@
                             <div class="datepicker" date-format="yyyy/MM/dd" selector="form-control">
                                 <div class="input-group">
                                     <input class="form-control" ng-model="prevDate" placeholder="Choose a date"/>
-                                    <span class="input-group-addon" style="cursor: pointer"><i class="fa fa-lg fa-calendar"></i></span>
+                                    <span class="input-group-addon" style="cursor: pointer"><i
+                                            class="fa fa-lg fa-calendar"></i></span>
                                 </div>
                             </div>
-                            <!--<div class="datepicker" button-prev-title="previous month" date-format="yyyy/MM/dd">-->
-                                <!--<div class="input-group">-->
-                                    <!--<input ng-model="prevDate"/>-->
-                                    <!--<span class="input-group-addon" style="cursor: pointer"><i class="fa fa-lg fa-calendar"></i></span>-->
-                                <!--</div>-->
-                            <!--</div>-->
+
                         </div>
 
                         <div class="col-lg-2">
                             <div class="datepicker" date-format="yyyy/MM/dd" selector="form-control">
                                 <div class="input-group">
                                     <input class="form-control" ng-model="nextDate" placeholder="Choose a date"/>
-                                    <span class="input-group-addon" style="cursor: pointer"><i class="fa fa-lg fa-calendar"></i></span>
+                                    <span class="input-group-addon" style="cursor: pointer"><i
+                                            class="fa fa-lg fa-calendar"></i></span>
                                 </div>
                             </div>
                             <!--<div class="datepicker" date-format="yyyy/MM/dd" button-next-title="next month">-->
-                                <!--<input ng-model="nextDate" type="text"/>-->
+                            <!--<input ng-model="nextDate" type="text"/>-->
                             <!--</div>-->
                         </div>
                     </div>
 
                     <canvas id="line" class="chart chart-line" chart-data="data"
-                            chart-labels="labels"
+                            chart-labels="labels" legend="false"
                             chart-click="onClick">
                     </canvas>
                 </div>
