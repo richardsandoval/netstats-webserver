@@ -50,12 +50,12 @@ DataAnalyzer.prototype.analysisByDate = function () {
         }
 
     });
-    var average = 0;
-    result.bw.forEach(function (element) {
-        average += element.dataUse;
-    });
+    //var average = 0;
+    //result.bw.forEach(function (element) {
+    //    average += element.dataUse;
+    //});
 
-    result.average = average / result.bw.length;
+    //result.average = average / result.bw.length;
     result.criteria = self.criteria;
 
     return result;

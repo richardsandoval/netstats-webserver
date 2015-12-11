@@ -4,6 +4,36 @@
 
 app.factory('homeService', function ($http, $q) {
 
+    var sampling = function (dArray) {
+        var q = $q.defer();
+        var SAMPLING = 30;
+        var promise = q.promise;
+
+        if (dArray.length < SAMPLING) {
+            q.resolve(dArray);
+        } else {
+            var n = dArray.length;
+            var steps = Math.ceil(n / SAMPLING);
+            var max = Math.floor(n / steps);
+            var callback = {
+                dataUse: [],
+                time: []
+            };
+            for (var i = 0; i < max; i++) {
+                callback.dataUse.push(dArray[i * steps].dataUse);
+                callback.time.push(moment(dArray[i * steps].time).format('YYYY/MM/DD, h:mm:ss a'));
+                for (var j = i * steps; j < steps * (i + 1); j++) {
+                    callback.dataUse[i] += dArray[j].dataUse;
+                }
+                //if (callback[i].time) {
+                //    callback[i].time = moment(callback[i].time).format('YYYY/MM/DD, h:mm:ss a');
+                //}
+            }
+            q.resolve(callback);
+        }
+        return promise;
+    };
+
     return {
         bw: bw
     };
@@ -12,20 +42,28 @@ app.factory('homeService', function ($http, $q) {
 
         var defered = $q.defer();
         var promise = defered.promise;
-        var err = {};
 
-        $http.get('/api/analysis/bw?uname=' + session.data.user +
-            '&start=' + new Date(from) + '&ends=' + new Date(to) +
+        $http.get(app.api + '/analysis/bw?uname=' + session.data.user +
+            '&start=' + from + '&ends=' + to +
             '&criteria' + criteria, {
             headers: {
                 Bearer: session.data.token,
                 uname: session.data.user
             }
-        }).then(function (data) {
-            console.log(data);
+        }).then(function (res) {
+            sampling(res.data.bw)
+                .then(function (data) {
+                    console.log(data);
+                    defered.resolve(data);
+                })
+                .catch(function (err) {
+                    defered.reject(err);
+                });
         }, function (err) {
-            console.log(err);
+            defered.reject(err);
         });
+
+        return promise;
     }
 
 
