@@ -42,7 +42,7 @@ app.factory('homeService', function ($http, $q) {
 
         $http.get('/api/analysis/bw?uname=' + session.data.user +
             '&start=' + from + '&ends=' + to +
-            '&criteria' + criteria, {
+            '&criteria=' + criteria, {
             headers: {
                 Bearer: session.data.token,
                 uname: session.data.user
