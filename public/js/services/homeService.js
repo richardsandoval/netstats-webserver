@@ -19,16 +19,13 @@ app.factory('homeService', function ($http, $q) {
                 dataUse: [],
                 time: []
             };
-            for (var i = 0; i < max; i++) {
-                callback.dataUse.push(dArray[i * steps].dataUse);
-                callback.time.push(moment(dArray[i * steps].time).format('YYYY/MM/DD, h:mm:ss a'));
-                for (var j = i * steps; j < steps * (i + 1); j++) {
-                    callback.dataUse[i] += dArray[j].dataUse;
-                }
-                //if (callback[i].time) {
-                //    callback[i].time = moment(callback[i].time).format('YYYY/MM/DD, h:mm:ss a');
-                //}
-            }
+            //for (var i = 0; i < max; i++) {
+            //    callback.dataUse.push(dArray[i * steps].dataUse);
+            //    callback.time.push(moment(dArray[i * steps].time).format('YYYY/MM/DD, h:mm:ss a'));
+            //    for (var j = i * steps; j < steps * (i + 1); j++) {
+            //        callback.dataUse[i] += dArray[j].dataUse;
+            //    }
+            //}
             q.resolve(callback);
         }
         return promise;
@@ -45,7 +42,7 @@ app.factory('homeService', function ($http, $q) {
 
         $http.get(app.api + '/analysis/bw?uname=' + session.data.user +
             '&start=' + from + '&ends=' + to +
-            '&criteria' + criteria, {
+            '&criteria=' + criteria, {
             headers: {
                 Bearer: session.data.token,
                 uname: session.data.user
