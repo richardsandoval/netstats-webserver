@@ -35,8 +35,8 @@ DataAnalyzer.prototype.analysisByDate = function () {
                     actual = data.timestamp.date.getDay();
                     break;
                 default:
-                    last = result.bw[result.bw.length - 1].time.getSeconds();
-                    actual = data.timestamp.date.getSeconds();
+                    last = result.bw[result.bw.length - 1].time.getMinutes();
+                    actual = data.timestamp.date.getMinutes();
             }
         }
 
