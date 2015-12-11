@@ -13,7 +13,7 @@ app.factory('signService', function ($http, $q) {
         var promise = defered.promise;
 
         var err = {};
-        $http.post(app.api+'/account/login', auth)
+        $http.post('/api/account/login', auth)
             .then(function (res) {
                 if (res) {
                     defered.resolve(res.data);

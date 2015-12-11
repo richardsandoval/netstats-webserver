@@ -48,7 +48,6 @@ app
             {label: "iPad Air", data: 18}
         ];
 
-
         $scope.topSrc = function () {
             $http.get('/api/analysis/rank?uname=' + $sessionStorage.data.user + '&start=' + (new Date() - 1) + '&ends=' + (new Date() + 1 ) + '&criteria=sIP', {
                 headers: {
@@ -132,7 +131,20 @@ app
                 //$scope.bw = $scope.d0_1;
             });
 
-        };
+//=======
+//            homeService.bw($sessionStorage, start, ends, which)
+//                .then(function (data) {
+//                    $scope.data = [[]];
+//                    $scope.labels = [];
+//                    console.log(data);
+//                    $scope.data.push(data.dataUse);
+//                    $scope.labels = data.time;
+//                })
+//                .catch(function (err) {
+//                    console.log(err);
+//                });
+//>>>>>>> 96559174277b08d27e5263332e5e513e77b06cd2
+//        };
 
         $scope.topFive = function () {
             $http.get('/api/analysis/rank?uname=' + $sessionStorage.data.user + '&start=' + (new Date() - 1) + '&ends=' + (new Date() + 1 ) + '&criteria=protocol', {

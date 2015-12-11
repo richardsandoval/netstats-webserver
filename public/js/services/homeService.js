@@ -19,6 +19,7 @@ app.factory('homeService', function ($http, $q) {
                 dataUse: [],
                 time: []
             };
+<<<<<<< HEAD
             //for (var i = 0; i < max; i++) {
             //    callback.dataUse.push(dArray[i * steps].dataUse);
             //    callback.time.push(moment(dArray[i * steps].time).format('YYYY/MM/DD, h:mm:ss a'));
@@ -26,6 +27,15 @@ app.factory('homeService', function ($http, $q) {
             //        callback.dataUse[i] += dArray[j].dataUse;
             //    }
             //}
+=======
+            for (var i = 0; i < max; i++) {
+                callback.dataUse.push(dArray[i * steps].dataUse);
+                callback.time.push(moment(dArray[i * steps].time).format('YYYY/MM/DD, h:mm:ss a'));
+                for (var j = i * steps; j < steps * (i + 1); j++) {
+                    callback.dataUse[i] += dArray[j].dataUse;
+                }
+            }
+>>>>>>> 96559174277b08d27e5263332e5e513e77b06cd2
             q.resolve(callback);
         }
         return promise;
@@ -40,7 +50,7 @@ app.factory('homeService', function ($http, $q) {
         var defered = $q.defer();
         var promise = defered.promise;
 
-        $http.get('/analysis/bw?uname=' + session.data.user +
+        $http.get('/api/analysis/bw?uname=' + session.data.user +
             '&start=' + from + '&ends=' + to +
             '&criteria=' + criteria, {
             headers: {
@@ -50,7 +60,6 @@ app.factory('homeService', function ($http, $q) {
         }).then(function (res) {
             sampling(res.data.bw)
                 .then(function (data) {
-                    console.log(data);
                     defered.resolve(data);
                 })
                 .catch(function (err) {
