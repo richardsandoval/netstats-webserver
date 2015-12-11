@@ -44,7 +44,7 @@ app
 
 
 		$scope.topSrc = function () {
-			$http.get('/api/analysis/rank?uname=' + $sessionStorage.data.user + '&start=' + (new Date() - 20) + '&ends=' + (new Date() + 1 ) + '&criteria=sIP', {
+			$http.get('/api/analysis/rank?uname=' + $sessionStorage.data.user + '&start=' + (new Date()) + '&ends=' + (new Date() + 1 ) + '&criteria=sIP', {
 				headers: {
 					Bearer: $sessionStorage.data.token,
 					uname: $sessionStorage.data.user
@@ -79,7 +79,7 @@ app
 		$scope.refreshData = function (which) {
 			var k = 0;
 			result = [];
-			$http.get('/api/analysis/bw?uname=' + $sessionStorage.data.user + '&start=' + (new Date() - 20) + '&ends=' + (new Date() + 1 ) + '&criteria=' + which, {
+			$http.get('/api/analysis/bw?uname=' + $sessionStorage.data.user + '&start=' + new Date() + '&ends=' + (new Date() + 1 ) + '&criteria=' + which, {
 				headers: {
 					Bearer: $sessionStorage.data.token,
 					uname: $sessionStorage.data.user
@@ -115,7 +115,7 @@ app
 		};
 
 		$scope.topFive = function () {
-			$http.get('/api/analysis/rank?uname=' + $sessionStorage.data.user + '&start=' + (new Date() - 20) + '&ends=' + (new Date() + 1 ) + '&criteria=protocol', {
+			$http.get('/api/analysis/rank?uname=' + $sessionStorage.data.user + '&start=' + (new Date() ) + '&ends=' + (new Date() + 1 ) + '&criteria=protocol', {
 				headers: {
 					Bearer: $sessionStorage.data.token,
 					uname: $sessionStorage.data.user
@@ -143,7 +143,7 @@ app
 		};
 
 		$scope.topDest = function () {
-			$http.get('/api/analysis/rank?uname=' + $sessionStorage.data.user + '&start=' + (new Date() - 20) + '&ends=' + (new Date() + 1 ) + '&criteria=dIP', {
+			$http.get('/api/analysis/rank?uname=' + $sessionStorage.data.user + '&start=' + (new Date()) + '&ends=' + (new Date() + 1 ) + '&criteria=dIP', {
 				headers: {
 					Bearer: $sessionStorage.data.token,
 					uname: $sessionStorage.data.user
