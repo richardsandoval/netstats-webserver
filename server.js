@@ -11,7 +11,6 @@ var cors = require('cors');
 
 var mongoose = require('mongoose');
 
-
 // configuration ===========================================
 
 // config files
@@ -41,8 +40,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(methodOverride('X-HTTP-Method-Override'));
 
-
-
 // set the static files location /public/img will be /img for users
 app.use(express.static(__dirname + '/public'));
 
@@ -51,19 +48,14 @@ app.use('/bower_components', express.static(__dirname + '/bower_components'));
 // routes ==================================================
 var Routes = require('./app/routes'); // configure our routes
 
-
 //app.get('/', function (req, res) {
 //    res.send('<h1>Welcome to NetStats Api</h1>');
 //});
-
 
 new Routes(app).login('/api/account');
 new Routes(app).apiRoute('/api');
 new Routes(app).analysis('/api/analysis');
 //new Routes(app).route();
-
-
-
 
 app.get('*', function (req, res) {
     res.sendfile('./public/index.html'); // load our public/index.html file
