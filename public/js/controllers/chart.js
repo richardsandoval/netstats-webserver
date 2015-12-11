@@ -5,7 +5,7 @@
 
 app
 // Flot Chart controller
-	.controller('FlotChartDemoCtrl', ['$scope', '$http', '$window', function ($scope, $http, $window) {
+	.controller('FlotChartDemoCtrl', ['$scope', '$http', '$sessionStorage', function ($scope, $http, $sessionStorage) {
 
 
 		$scope.d0_1 = [[1, 6.5], [2, 6.5], [3, 7], [4, 8], [5, 7.5], [6, 7], [7, 6.8], [8, 7], [9, 7.2], [10, 7], [11, 6.8], [12, 7]];
@@ -44,10 +44,10 @@ app
 
 
 		$scope.topSrc = function () {
-			$http.get(app.api + '/analysis/rank?uname=' + $window.data.user + '&start=' + (new Date() - 20) + '&ends=' + (new Date() + 1 ) + '&criteria=sIP', {
+			$http.get('/api/analysis/rank?uname=' + $sessionStorage.data.user + '&start=' + (new Date() - 20) + '&ends=' + (new Date() + 1 ) + '&criteria=sIP', {
 				headers: {
-					Bearer: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1NjM5MTU2ZGY3NjMwYzI4MjFhOWQ3Y2QiLCJ1c2VyIjoicnNhbmRvdmFsIiwicHdyIjoicnNhbmRvdmFsIiwic3RhZmZJZCI6IjU2M2ExN2E5Njk3OGIyMTE0ZWQzYzJkYiJ9.p6z5FZjvnnlbpXNy9OTTqqSJfwy7KDerR_HMdoPTAi4',
-					uname: 'rsandoval'
+					Bearer: $sessionStorage.data.token,
+					uname: $sessionStorage.data.user
 				}
 			}).then(function (res) {
 				$scope.topDestData = [[]];
@@ -79,10 +79,10 @@ app
 		$scope.refreshData = function (which) {
 			var k = 0;
 			result = [];
-			$http.get(app.api + '/analysis/bw?uname=' + $window.data.user + '&start=' + (new Date() - 20) + '&ends=' + (new Date() + 1 ) + '&criteria=' + which, {
+			$http.get('/api/analysis/bw?uname=' + $sessionStorage.data.user + '&start=' + (new Date() - 20) + '&ends=' + (new Date() + 1 ) + '&criteria=' + which, {
 				headers: {
-					Bearer: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1NjM5MTU2ZGY3NjMwYzI4MjFhOWQ3Y2QiLCJ1c2VyIjoicnNhbmRvdmFsIiwicHdyIjoicnNhbmRvdmFsIiwic3RhZmZJZCI6IjU2M2ExN2E5Njk3OGIyMTE0ZWQzYzJkYiJ9.p6z5FZjvnnlbpXNy9OTTqqSJfwy7KDerR_HMdoPTAi4',
-					uname: 'rsandoval'
+					Bearer: $sessionStorage.data.token,
+					uname: $sessionStorage.data.user
 				}
 			}).then(function (res) {
 				var labels = [];
@@ -115,10 +115,10 @@ app
 		};
 
 		$scope.topFive = function () {
-			$http.get(app.api + '/analysis/rank?uname=' + $window.data.user + '&start=' + (new Date() - 20) + '&ends=' + (new Date() + 1 ) + '&criteria=protocol', {
+			$http.get('/api/analysis/rank?uname=' + $sessionStorage.data.user + '&start=' + (new Date() - 20) + '&ends=' + (new Date() + 1 ) + '&criteria=protocol', {
 				headers: {
-					Bearer: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1NjM5MTU2ZGY3NjMwYzI4MjFhOWQ3Y2QiLCJ1c2VyIjoicnNhbmRvdmFsIiwicHdyIjoicnNhbmRvdmFsIiwic3RhZmZJZCI6IjU2M2ExN2E5Njk3OGIyMTE0ZWQzYzJkYiJ9.p6z5FZjvnnlbpXNy9OTTqqSJfwy7KDerR_HMdoPTAi4',
-					uname: 'rsandoval'
+					Bearer: $sessionStorage.data.token,
+					uname: $sessionStorage.data.user
 				}
 			}).then(function (res) {
 				$scope.pieData = [];
@@ -143,10 +143,10 @@ app
 		};
 
 		$scope.topDest = function () {
-			$http.get(app.api + '/analysis/rank?uname=' + $window.data.user + '&start=' + (new Date() - 20) + '&ends=' + (new Date() + 1 ) + '&criteria=dIP', {
+			$http.get('/api/analysis/rank?uname=' + $sessionStorage.data.user + '&start=' + (new Date() - 20) + '&ends=' + (new Date() + 1 ) + '&criteria=dIP', {
 				headers: {
-					Bearer: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1NjM5MTU2ZGY3NjMwYzI4MjFhOWQ3Y2QiLCJ1c2VyIjoicnNhbmRvdmFsIiwicHdyIjoicnNhbmRvdmFsIiwic3RhZmZJZCI6IjU2M2ExN2E5Njk3OGIyMTE0ZWQzYzJkYiJ9.p6z5FZjvnnlbpXNy9OTTqqSJfwy7KDerR_HMdoPTAi4',
-					uname: 'rsandoval'
+					Bearer: $sessionStorage.data.token,
+					uname: $sessionStorage.data.user
 				}
 			}).then(function (res) {
 				$scope.topDestData = [[]];
