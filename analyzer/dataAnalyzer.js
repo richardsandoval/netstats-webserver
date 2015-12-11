@@ -51,7 +51,13 @@ DataAnalyzer.prototype.analysisByDate = function () {
 
     });
     var average = 0;
+    var ret = {};
+    var last = result.bw[0].time;
+
     result.bw.forEach(function (element) {
+        if(result.bw > 30){
+
+        }
         average += element.dataUse;
     });
 

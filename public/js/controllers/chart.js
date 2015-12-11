@@ -232,3 +232,4 @@ app
 		$scope.d4 = $scope.getRandomData();
 	}])
 ;
+
