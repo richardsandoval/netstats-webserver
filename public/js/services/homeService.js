@@ -40,7 +40,7 @@ app.factory('homeService', function ($http, $q) {
         var defered = $q.defer();
         var promise = defered.promise;
 
-        $http.get(app.api + '/analysis/bw?uname=' + session.data.user +
+        $http.get('/analysis/bw?uname=' + session.data.user +
             '&start=' + from + '&ends=' + to +
             '&criteria=' + criteria, {
             headers: {
