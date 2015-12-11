@@ -12,6 +12,11 @@ var AnalysisRoute = module.exports = function (Sniffer, Account, Data) {
     this.app = express.Router();
 };
 
+
+AnalysisRoute.prototype.tcp = function(){
+
+};
+
 AnalysisRoute.prototype.rank = function () {
     var self = this;
 
