@@ -36,7 +36,7 @@ angular.module('app')
                     asideDock: false,
                     container: false
                 }
-            }
+            };
 
             // save settings to local storage
             if (angular.isDefined($localStorage.settings)) {

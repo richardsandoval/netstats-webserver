@@ -2,28 +2,32 @@
 
 /* Controllers */
 // signin controller
-app.controller('SigninFormController', ['$scope', '$http', '$state', '$window', function ($scope, $http, $state, $window) {
+app.controller('SigninFormController', ['$scope', '$state', '$sessionStorage', 'signService', function ($scope, $state, $sessionStorage, signService) {
 
-    if (window.data) {
+    if ($sessionStorage.data) {
         $state.go('app.dashboard-v1');
+    } else {
+        $state.go('access.signin');
     }
 
     $scope.user = {};
     $scope.authError = null;
+
     $scope.login = function () {
-        $scope.authError = null;
-        // Try to login
-        $http.post(app.api + '/account/login', {user: $scope.user.email, pwr: $scope.user.password})
-            .then(function (response) {
-                if (!response.data.user) {
-                    $scope.authError = 'Email or Password not right';
-                } else {
-                    console.log(response.data);
-                    $window.data = response.data;
-                    $state.go('app.dashboard-v1');
-                }
-            }, function () {
-                $scope.authError = 'Server Error';
+        var auth = {
+            user: $scope.user.email,
+            pwr: $scope.user.password
+        };
+        signService.signIn(auth)
+            .then(function (data) {
+                console.log(data);
+                $sessionStorage.data = data;
+                $state.go('app.dashboard-v1');
+            })
+            .catch(function (err) {
+                console.log(err);
+                $scope.authError = err.message;
             });
+
     };
 }]);
