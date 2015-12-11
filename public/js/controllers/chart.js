@@ -83,53 +83,53 @@ app
 
         $scope.refreshData = function (which, start, ends) {
 
-            //homeService.bw($sessionStorage, start, ends, which)
-            //    .then(function (data) {
-            //        $scope.data = [[]];
-            //        $scope.labels = [];
-            //        console.log(data);
-            //        //$scope.data.push(data.dataUse);
-            //        //$scope.labels = data.time;
-            //    })
-            //    .catch(function (err) {
-            //        console.log(err);
-            //    });
+			//homeService.bw($sessionStorage, start, ends, which)
+			//    .then(function (data) {
+			//        $scope.data = [[]];
+			//        $scope.labels = [];
+			//        console.log(data);
+			//        //$scope.data.push(data.dataUse);
+			//        //$scope.labels = data.time;
+			//    })
+			//    .catch(function (err) {
+			//        console.log(err);
+			//    });
 
-            var k = 0;
-            result = [];
-            //console.log('criteria: ' + which + ' start: ' + start + ' ends: ' + ends);
-            $http.get(app.api + '/analysis/bw?uname=' + $sessionStorage.data.user + '&start=' + start + '&ends=' + ends + '&criteria=' + which, {
-                headers: {
-                    Bearer: $sessionStorage.data.token,
-                    uname: $sessionStorage.data.user
-                }
-            }).then(function (res) {
-                var labels = [];
-                var datas = [];
-                $scope.data = [[]];
-                var time = new Date(res.data.bw[res.data.bw.length - 1].time);
-                $scope.sizePacket = res.data.bw.length;
-                res.data.bw.forEach(function (data) {
-                    //var arr = new Array(2);
-                    //arr[1] = data.dataUse;
-                    //arr[0] = k++;
-                    time = new Date(data.time);
-                    labels.push(time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds());
-                    datas.push(data.dataUse);
+			var k = 0;
+			result = [];
+			//console.log('criteria: ' + which + ' start: ' + start + ' ends: ' + ends);
+			$http.get(app.api + '/analysis/bw?uname=' + $sessionStorage.data.user + '&start=' + start + '&ends=' + ends + '&criteria=' + which, {
+				headers: {
+					Bearer: $sessionStorage.data.token,
+					uname: $sessionStorage.data.user
+				}
+			}).then(function (res) {
+				var labels = [];
+				var datas = [];
+				$scope.data = [[]];
+				var time = new Date(res.data.bw[res.data.bw.length - 1].time);
+				$scope.sizePacket = res.data.bw.length;
+				res.data.bw.forEach(function (data) {
+					//var arr = new Array(2);
+					//arr[1] = data.dataUse;
+					//arr[0] = k++;
+					time = new Date(data.time);
+					labels.push(time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds());
+					datas.push(data.dataUse);
 
-                    //result.push(arr);
-                });
-                //console.log(result);
-                $scope.data.push(sampling(datas));
-                $scope.time.ago.setDate(time.getDate());
-                $scope.labels = (sampling(labels));
-                //$scope.label = result[0];
-                //$scope.data = result[1];
-                //$scope.bw = result;
-            }, function (err) {
-                console.log(err);
-                //$scope.bw = $scope.d0_1;
-            });
+					//result.push(arr);
+				});
+				//console.log(result);
+				$scope.data.push(sampling(datas));
+				$scope.time.ago.setDate(time.getDate());
+				$scope.labels = (sampling(labels));
+				//$scope.label = result[0];
+				//$scope.data = result[1];
+				//$scope.bw = result;
+			}, function (err) {
+				console.log(err);
+				//$scope.bw = $scope.d0_1;
+			});
 
 //=======
 //            homeService.bw($sessionStorage, start, ends, which)
@@ -145,6 +145,7 @@ app
 //                });
 //>>>>>>> 96559174277b08d27e5263332e5e513e77b06cd2
 //        };
+		};
 
         $scope.topFive = function () {
             $http.get('/api/analysis/rank?uname=' + $sessionStorage.data.user + '&start=' + (new Date() - 1) + '&ends=' + (new Date() + 1 ) + '&criteria=protocol', {
@@ -262,5 +263,4 @@ app
         };
 
         $scope.d4 = $scope.getRandomData();
-    }])
-;
+    }]);

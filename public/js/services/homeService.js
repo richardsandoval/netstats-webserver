@@ -19,7 +19,6 @@ app.factory('homeService', function ($http, $q) {
                 dataUse: [],
                 time: []
             };
-<<<<<<< HEAD
             //for (var i = 0; i < max; i++) {
             //    callback.dataUse.push(dArray[i * steps].dataUse);
             //    callback.time.push(moment(dArray[i * steps].time).format('YYYY/MM/DD, h:mm:ss a'));
@@ -27,7 +26,6 @@ app.factory('homeService', function ($http, $q) {
             //        callback.dataUse[i] += dArray[j].dataUse;
             //    }
             //}
-=======
             for (var i = 0; i < max; i++) {
                 callback.dataUse.push(dArray[i * steps].dataUse);
                 callback.time.push(moment(dArray[i * steps].time).format('YYYY/MM/DD, h:mm:ss a'));
@@ -35,7 +33,6 @@ app.factory('homeService', function ($http, $q) {
                     callback.dataUse[i] += dArray[j].dataUse;
                 }
             }
->>>>>>> 96559174277b08d27e5263332e5e513e77b06cd2
             q.resolve(callback);
         }
         return promise;
